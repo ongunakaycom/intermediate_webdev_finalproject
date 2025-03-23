@@ -14,13 +14,14 @@ module.exports = {
     // HTML generation
     new HtmlWebpackPlugin({
       template: './src/index.html',  // Source HTML template file
-      favicon: './src/assets/favicon.ico',  // Automatically inject favicon
+      // Remove favicon from HtmlWebpackPlugin to avoid duplication
     }),
-    
+
     // Copy static assets like images to the dist folder
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/assets', to: 'assets' },  // Copy assets (like favicon) to the dist folder
+        { from: 'src/assets/favicon.ico', to: 'favicon.ico' },  // Explicitly copy favicon to root
       ],
     }),
 
