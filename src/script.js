@@ -1,4 +1,4 @@
-import './style.css';
+import './style.css'; // This should work if loaders are configured correctly
 
 // Function to calculate simple interest
 function calculateSimpleInterest(principal, rate, time) {
