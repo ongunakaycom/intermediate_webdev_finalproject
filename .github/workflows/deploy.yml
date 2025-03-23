@@ -1,42 +1,35 @@
-name: NodeJS with Webpack and GitHub Pages Deployment
+name: Deploy to GitHub Pages from Main
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-
     steps:
-    # Step 1: Check out the repository
-    - uses: actions/checkout@v4
+      # Step 1: Check out the main branch
+      - uses: actions/checkout@v4
 
-    # Step 2: Set up Node.js
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: |
-        npm install
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    # Step 4: Build the project using Webpack
-    - name: Build
-      run: |
-        npx webpack
+      # Step 4: Build the project
+      - name: Build project
+        run: npx webpack
 
-    # Step 5: Deploy to GitHub Pages
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: dist
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+          publish_branch: main
