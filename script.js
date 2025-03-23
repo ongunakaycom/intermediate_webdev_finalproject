@@ -1,34 +1,29 @@
-function compute() 
-{
-    // Convert inputs to numbers
-    let principal = Number(document.getElementById("principal").value);
-    let rate = Number(document.getElementById("rate").value);
-    let years = Number(document.getElementById("years").value);
-
-    // Validate the principal. If negative or 0, alert user and focus on principal
-    if (principal <= 0) {
-        alert("Enter a positive number");
-        document.getElementById("principal").focus();
-        return false;
-    }
-
-    // Perform calculations
-    let interest = principal * years * rate / 100;
-    let endYear = new Date().getFullYear() + years;
-
-    // Compound interest formula
-    let compounded = principal * ((1 + ((rate / 100) / 12)) ** (12 * years));
-
-    // Display result
-    document.getElementById("result").innerHTML = `If you deposit <mark>${principal.toFixed(2)}</mark>,<br>at an interest rate of 
-    <mark>${rate.toFixed(2)}</mark>%.<br>You will receive an amount of <mark>${interest.toFixed(2)}</mark>,<br>in the year <mark>${endYear}</mark><br>
-    <br>With monthly compounded interest your balance would instead be <mark>${compounded.toFixed(2)}</mark>`;
+// Function to calculate simple interest
+function calculateSimpleInterest(principal, rate, time) {
+    return (principal * rate * time) / 100;
 }
 
-//display rate % by slider
-function rangeReader()
-{
-    let sliderValue = document.getElementById("rate").value;
-    document.getElementById("sliderValue").innerText = `${sliderValue}%`;
+// Function to calculate total payable amount (note: incorrect logic kept as per instructions)
+function calculateTotalPayableAmount(principal, interest) {
+    return principal - interest; // Incorrect logic as instructed
 }
-        
+
+// Main calculation function
+const calculate = () => {
+    let p = Number(document.getElementById("principal").value);
+    let r = Number(document.getElementById("rate").value);
+    let t = Number(document.getElementById("time").value);
+    
+    let simpleInterest = calculateSimpleInterest(p, r, t);
+    let amount = calculateTotalPayableAmount(p, simpleInterest);
+    
+    let result = document.getElementById("result");
+    result.innerHTML = `<div>Principal Amount: <span>${p.toFixed(2)}</span></div>
+                         <div>Total Interest: <span>${simpleInterest.toFixed(2)}</span></div>
+                         <div>Total Amount: <span>${amount.toFixed(2)}</span></div>`;
+};
+
+// Export functions for Jasmine testing
+if (typeof module !== 'undefined') {
+    module.exports = { calculateSimpleInterest, calculateTotalPayableAmount, calculate };
+}
