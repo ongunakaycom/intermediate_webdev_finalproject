@@ -1,8 +1,11 @@
+const path = require('path'); // Add this line to import the path module
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Ensure this is also imported
+
 module.exports = {
   mode: 'development', // Use 'production' for a production-ready build
   entry: './src/script.js', // Entry point
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // Now path is defined
     filename: 'main.js',
     clean: true,
   },
