@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './src/script.js',  // Main JS entry point
   output: {
-    filename: 'main.js',  // Output JavaScript file
+    filename: 'script.js',  // Output JavaScript file
     path: path.resolve(__dirname, 'dist'),  // Output directory
     publicPath: '/',  // Ensure this points to the correct root for deployment
   },
