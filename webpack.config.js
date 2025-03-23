@@ -7,7 +7,8 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-  },
+    publicPath: '/intermediate_webdev_finalproject/',  // Adjust this based on your repo name
+  },  
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html', // Source HTML file
