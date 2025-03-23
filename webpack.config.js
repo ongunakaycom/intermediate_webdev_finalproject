@@ -14,7 +14,7 @@ module.exports = {
     // HTML generation
     new HtmlWebpackPlugin({
       template: './src/index.html',  // Source HTML template file
-      // Remove favicon from HtmlWebpackPlugin to avoid duplication
+      favicon: './src/assets/favicon.ico',  // Inject favicon
     }),
 
     // Copy static assets like images to the dist folder
