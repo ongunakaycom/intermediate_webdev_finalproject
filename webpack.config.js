@@ -1,29 +1,30 @@
-const path = require('path'); // Add this line to import the path module
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // Ensure this is also imported
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // Use 'production' for a production-ready build
-  entry: './src/script.js', // Entry point
+  entry: './src/index.js', // Entry point for your application
   output: {
-    path: path.resolve(__dirname, 'dist'), // Now path is defined
     filename: 'main.js',
-    clean: true,
+    path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // Template for generating index.html
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'], // Handles CSS files
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif|svg|ico)$/i, // Handles assets
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html', // Use your source HTML template
-    }),
-  ],
+  devServer: {
+    static: './dist',
+  },
 };
