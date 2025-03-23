@@ -15,7 +15,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            sourceType: 'module', // Set sourceType here
+            sourceType: 'unambiguous', // Use 'unambiguous' to handle both ES modules and CommonJS
           },
         },
       },
