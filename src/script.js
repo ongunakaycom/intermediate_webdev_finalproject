@@ -1,4 +1,7 @@
 // Function to calculate simple interest
+import './style.css';  // Make sure this is included to process the CSS file
+
+
 function compute() {
     var principal = parseFloat(document.getElementById("principal").value);
     var rate = parseFloat(document.getElementById("rate").value);
