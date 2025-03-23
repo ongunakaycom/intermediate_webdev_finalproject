@@ -31,6 +31,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # Use the Node.js version required by your project
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build static content
+        run: npm run build # Replace with your build command if different
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
