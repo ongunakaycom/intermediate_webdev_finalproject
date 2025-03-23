@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/script.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'), // Keep using dist
+    path: path.resolve(__dirname, 'docs'),
   },
   module: {
     rules: [
