@@ -1,49 +1,79 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+
+<head>
     <title>Simple Interest Calculator</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         .labelClass {
             float: left;
             width: 150px;
         }
+
         .sign {
             font-family: Optima;
             font-size: 28px;
             position: relative;
             top: 2px;
         }
-    </style>
-    </head>
 
+        .maindiv {
+            background-color: white;
+            color: black;
+            width: 640px;
+            padding: 20px;
+            border-radius: 25px;
+            align-items: center;
+            margin-left: 40px;
+        }
+
+        .secondarydiv {
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
 
     <div class="maindiv">
-
-     <h1>Simple Interest Calculator</h1>
-    <div class="secondarydiv">
-        <span class="labelClass">Amount</span>
-        <input type="number" id="principal"> 
-        <br><br>
-        <span class="labelClass">Interest Rate</span> 
-        <!--slider div-->
-        <div class="slider">
-        <input style="accent-color: rgb(120, 120, 234);" type="range" id="rate"  min="1" max="20" step="0.10" value="10.25"onchange="updateRate()"></input><span id="rate_val">10.50%</span> 
-        <br><br>
+        <h1>Simple Interest Calculator</h1>
+        <div class="secondarydiv">
+            <span class="labelClass">Amount</span>
+            <input type="number" id="principal">
+            <br><br>
+            <span class="labelClass">Interest Rate</span>
+            <!-- Slider div -->
+            <div class="slider">
+                <input style="accent-color: rgb(120, 120, 234);" type="range" id="rate" min="1" max="20" step="0.10" value="10.25" onchange="updateRate()">
+                <span id="rate_val">10.25%</span>
+                <br><br>
+            </div>
+            <!-- Slider div -->
+            <span class="labelClass"> No. of Years</span>
+            <select type="number" id="years">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <br><br>
+            <button id="calculateButton">Compute Interest</button>
+            <br>
+            <span id="result"></span>
         </div>
-        <!--slider div-->
-        <span class="labelClass"> No. of Years</span>
-        <select type="number" id="years"><option value="1">1</option><option value ="2">2</option><option value ="3">3</option>
-        <option  value ="4">4</option><option value ="5">5</option><option value ="6">6</option><option value ="7">7</option>
-        <option value ="8">8</option><option value ="9">9</option><option value ="10">10</option></select>
-        <br><br>
-        <button onclick="compute()"> Compute Interest</button>
         <br>
-        <span id="result"></span>
+        <footer>
+            <span class="sign">&#169;</span> Calculator
+        </footer>
     </div>
-        <br>
-        <footer> <span class="sign">&#169;</span> Calculator  </footer>
-    </div>
+
+    <script src="script.js"></script>
+</body>
+
 </html>
