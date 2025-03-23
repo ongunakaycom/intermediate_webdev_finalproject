@@ -1,24 +1,26 @@
-body {
-    background-color: black;
-    font: arial;
-    color: white;
-    }
+
 
 h1{
-    color: grey;
-    font: verdana;
-    }
-
-.maindiv{
-    margin: auto;
-    background-color: white;
-    color: black;
-    width: 365px;
-    padding: 20px;
-    border-radius: 25px;
-    }
-
-p{
-    padding-left: 30px;
+    font-family: verdana;
+    color:gray;
 }
 
+body {
+    background-color: black;
+    font-family: arial;
+    color: white;
+}
+
+.maindiv {
+    background-color: white;
+    color:black;
+    width: 640px;
+    padding: 20px;
+    border-radius: 25px;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.secondarydiv {
+    margin-left: 100px;
+}

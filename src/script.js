@@ -1,67 +1,29 @@
-// Function to calculate simple interest
-function calculateSimpleInterest(principal, rate, time) {
-    return (principal * rate * time) / 100;
-}
+function compute(){
+    var principal = document.getElementById("principal").value;
+    var rate = document.getElementById("rate").value;
+    var years = document.getElementById("years").value;
+    var interest = money_round(principal * years * rate / 100);
+    var year = new Date().getFullYear()+parseInt(years);
 
-// Function to calculate total payable amount (correct logic)
-function calculateTotalAmount(principal, interest) {
-    return principal + interest; // Correct logic to add interest
-}
-
-// Function with incorrect logic for calculating total amount (for demonstration)
-function calculateWithFaultyLogic(principal, interest) {
-    return principal - interest; // Incorrect logic for demonstration
-}
-
-// Main calculation function
-function compute() {
-    // Get values from the input fields
-    const principal = Number(document.getElementById("principal").value);
-    const rate = Number(document.getElementById("rate").value); // Get interest rate
-    const years = Number(document.getElementById("years").value); // Get number of years
-  
-    // Validate inputs to ensure they're numbers and not NaN
-    if (isNaN(principal) || isNaN(rate) || isNaN(years)) {
-        alert("Please enter valid numeric values for all fields.");
+    if(isNaN(principal) || principal <= 0){
+        alert("Enter a positive number.")
+        principal.focus();
         return;
     }
-  
-    // Calculate simple interest
-    const interest = calculateSimpleInterest(principal, rate, years);
-  
-    // Correct total amount
-    const totalAmount = calculateTotalAmount(principal, interest);
-  
-    // Incorrect total amount (for demonstration)
-    const faultyAmount = calculateWithFaultyLogic(principal, interest);
-  
-    // Display correct results
-    const result = document.getElementById("result");
-    result.innerHTML = `
-        <div>Principal Amount: <span>${principal.toFixed(2)}</span></div>
-        <div>Total Interest: <span>${interest.toFixed(2)}</span></div>
-        <div>Total Amount (Correct): <span>${totalAmount.toFixed(2)}</span></div>
-        <div>Total Amount (Faulty): <span>${faultyAmount.toFixed(2)}</span></div>
-    `;
+
+    //to round up to two decimal places
+    function money_round(num) {
+        return Math.ceil(num * 100) / 100;
+    }
+
+    var result = document.getElementById("result");
+    return result.innerText = "If you deposit $" + principal + ",\n at an interest rate of " + rate +"%.\n  You will receive an amount of $" + interest + ",\n in the year of " + year;
 }
+        
 
-// Function to update the rate display dynamically as the slider is moved
-function updateSliderValue() {
-    const slider = document.getElementById("rate");
-    const sliderValue = document.getElementById("sliderValue");
-    sliderValue.innerText = `${slider.value}%`;
+//function to read the values of the range slider and display it in the <span> adjacent to the slider
+function updateRate(){
+    var rateVal = document.getElementById("rate").value;
+    document.getElementById("rate_val").innerText=rateVal + "%";
 }
-
-// Bind the button click event to the compute function
-document.getElementById('calculateButton').addEventListener('click', compute);
-
-// Bind the rate slider to update the displayed value dynamically
-document.getElementById("rate").addEventListener("input", updateSliderValue);
-
-// Initialize the slider display on page load
-document.addEventListener("DOMContentLoaded", updateSliderValue);
-
-// Export functions for testing purposes (e.g., Jasmine)
-if (typeof module !== 'undefined') {
-    module.exports = { calculateSimpleInterest, calculateTotalAmount, calculateWithFaultyLogic, compute };
-}
+        
