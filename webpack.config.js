@@ -9,15 +9,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.js$/, // Apply this rule to .js files
+        exclude: /node_modules/, // Don't process files in node_modules
         use: {
           loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            sourceType: 'module', // Set sourceType here
+          },
         },
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/, // Apply this rule to .css files
+        use: ['style-loader', 'css-loader'], // Use style-loader and css-loader
       },
     ],
   },
