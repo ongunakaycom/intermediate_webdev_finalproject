@@ -34,3 +34,22 @@ const calculate = () => {
 if (typeof module !== 'undefined') {
     module.exports = { calculateSimpleInterest, calculateTotalPayableAmount, calculate };
 }
+
+function compute() {
+    const principal = Number(document.getElementById("principal").value);
+    const rate = Number(document.getElementById("rate").value);
+    const years = Number(document.getElementById("years").value);
+  
+    // Calculate simple interest
+    const interest = (principal * rate * years) / 100;
+    const totalAmount = principal + interest;
+  
+    // Display results
+    const result = document.getElementById("result");
+    result.innerHTML = `
+      <div>Principal Amount: <span>${principal.toFixed(2)}</span></div>
+      <div>Total Interest: <span>${interest.toFixed(2)}</span></div>
+      <div>Total Amount Payable: <span>${totalAmount.toFixed(2)}</span></div>
+    `;
+  }
+  

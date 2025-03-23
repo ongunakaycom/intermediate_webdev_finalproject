@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/script.js',
@@ -6,22 +7,27 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // Source HTML file
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.js$/, // Apply this rule to .js files
-        exclude: /node_modules/, // Don't process files in node_modules
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            sourceType: 'unambiguous', // Use 'unambiguous' to handle both ES modules and CommonJS
+            sourceType: 'unambiguous',
           },
         },
       },
       {
-        test: /\.css$/, // Apply this rule to .css files
-        use: ['style-loader', 'css-loader'], // Use style-loader and css-loader
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
