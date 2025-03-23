@@ -6,7 +6,7 @@ function compute() {
     
     // Check if principal is valid
     if (isNaN(principal) || principal <= 0) {
-        alert("Enter a positive number.");
+        alert("Please enter a positive number for the principal.");
         document.getElementById("principal").focus();
         return;
     }
@@ -19,15 +19,15 @@ function compute() {
 
     // Display result
     var result = document.getElementById("result");
-    result.innerText = "If you deposit $" + principal + ",\n" +
-                       "at an interest rate of " + rate + "%.\n" +
-                       "You will receive an amount of $" + interest + ",\n" +
-                       "in the year " + year + ".";
+    result.innerText = `If you deposit $${principal},\n` +
+                       `at an interest rate of ${rate}%. \n` +
+                       `You will receive an amount of $${interest},\n` +
+                       `in the year ${year}.`;
 }
 
-// Function to round to two decimal places
+// Function to round to two decimal places (rounded to nearest value)
 function money_round(num) {
-    return Math.ceil(num * 100) / 100;
+    return Math.round(num * 100) / 100; // Rounded to nearest value
 }
 
 // Function to update rate value displayed on the slider
@@ -36,7 +36,7 @@ function updateRate() {
     document.getElementById("rate_val").innerText = rateVal + "%";
 }
 
-// Make sure the event listeners are bound to the elements correctly
+// Make sure the event listeners are bound to the elements correctly after DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Bind updateRate function to the slider change event
     document.getElementById('rate').addEventListener('input', updateRate);
