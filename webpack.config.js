@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development', // Use 'production' for deployment
-  entry: './src/script.js', // Adjust to your main JavaScript file
+  mode: 'development', // Switch to 'production' for deployment
+  entry: './src/script.js', // Main JavaScript entry
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -12,18 +12,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|svg|ico)$/i, // Match image files
-        type: 'asset/resource', // Webpack will move these files to the `/dist` folder
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'], // Load and inject CSS into your bundle
       },
       {
-        test: /\.css$/i, // Handle CSS files
-        use: ['style-loader', 'css-loader'],
+        test: /\.(png|jpg|gif|svg|ico)$/i, // Handle image files
+        type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // Copy and process your HTML file into `/dist`
+      template: './src/index.html', // Use your existing HTML template
     }),
   ],
 };
