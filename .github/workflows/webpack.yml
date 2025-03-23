@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: NodeJS with Webpack and GitHub Pages Deployment
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4  # Check out the repository
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
@@ -28,4 +28,10 @@ jobs:
 
     - name: Build
       run: |
-        npx webpack
+        npx webpack --mode production
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist  # Replace with the output directory of your Webpack build
