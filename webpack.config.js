@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Import the plugin
 
 module.exports = {
-  entry: './src/script.js',
+  entry: './src/script.js', // Main JS entry point
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -16,11 +16,11 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets', to: 'assets' },
+        { from: 'src/assets', to: 'assets' },  // Copy assets like favicon
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css', // Output CSS filename
+      filename: 'style.css', // Extract CSS into this file
     }),
   ],
   module: {
@@ -38,7 +38,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'], // Change style-loader to MiniCssExtractPlugin.loader
+        use: [
+          MiniCssExtractPlugin.loader,  // Extract CSS into a separate file
+          'css-loader',  // Parse CSS
+        ],
       },
     ],
   },
