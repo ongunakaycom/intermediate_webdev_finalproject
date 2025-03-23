@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'script.js',  // Output JavaScript file
     path: path.resolve(__dirname, 'dist'),  // Output directory
-    publicPath: '/',  // Ensure this points to the correct root for deployment
+    publicPath: '/intermediate_webdev_finalproject/', // Add this line
   },
   plugins: [
     // HTML generation
