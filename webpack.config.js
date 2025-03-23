@@ -1,14 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // Import the plugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/script.js', // Main JS entry point
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/intermediate_webdev_finalproject/',  // Adjust this based on your repo name
+    publicPath: '/',  // Ensure this points to the correct root
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -32,7 +32,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            sourceType: 'unambiguous',
           },
         },
       },
@@ -45,5 +44,5 @@ module.exports = {
       },
     ],
   },
-  mode: 'production',
+  mode: 'production', // Change to 'development' for development
 };

@@ -1,29 +1,46 @@
-function compute(){
-    var principal = document.getElementById("principal").value;
-    var rate = document.getElementById("rate").value;
-    var years = document.getElementById("years").value;
-    var interest = money_round(principal * years * rate / 100);
-    var year = new Date().getFullYear()+parseInt(years);
-
-    if(isNaN(principal) || principal <= 0){
-        alert("Enter a positive number.")
-        principal.focus();
+// Function to calculate simple interest
+function compute() {
+    var principal = parseFloat(document.getElementById("principal").value);
+    var rate = parseFloat(document.getElementById("rate").value);
+    var years = parseInt(document.getElementById("years").value);
+    
+    // Check if principal is valid
+    if (isNaN(principal) || principal <= 0) {
+        alert("Enter a positive number.");
+        document.getElementById("principal").focus();
         return;
     }
 
-    //to round up to two decimal places
-    function money_round(num) {
-        return Math.ceil(num * 100) / 100;
-    }
+    // Calculate interest
+    var interest = money_round(principal * years * rate / 100);
+    
+    // Calculate year when the deposit will mature
+    var year = new Date().getFullYear() + years;
 
+    // Display result
     var result = document.getElementById("result");
-    return result.innerText = "If you deposit $" + principal + ",\n at an interest rate of " + rate +"%.\n  You will receive an amount of $" + interest + ",\n in the year of " + year;
+    result.innerText = "If you deposit $" + principal + ",\n" +
+                       "at an interest rate of " + rate + "%.\n" +
+                       "You will receive an amount of $" + interest + ",\n" +
+                       "in the year " + year + ".";
 }
-        
 
-//function to read the values of the range slider and display it in the <span> adjacent to the slider
-function updateRate(){
-    var rateVal = document.getElementById("rate").value;
-    document.getElementById("rate_val").innerText=rateVal + "%";
+// Function to round to two decimal places
+function money_round(num) {
+    return Math.ceil(num * 100) / 100;
 }
-        
+
+// Function to update rate value displayed on the slider
+function updateRate() {
+    var rateVal = document.getElementById("rate").value;
+    document.getElementById("rate_val").innerText = rateVal + "%";
+}
+
+// Make sure the event listeners are bound to the elements correctly
+document.addEventListener('DOMContentLoaded', function() {
+    // Bind updateRate function to the slider change event
+    document.getElementById('rate').addEventListener('input', updateRate);
+
+    // Bind compute function to the button click event
+    document.getElementById('calculateButton').addEventListener('click', compute);
+});
