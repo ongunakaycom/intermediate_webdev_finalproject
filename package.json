@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve",
-    "test": "jasmine"
+    "test": "jasmine",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
