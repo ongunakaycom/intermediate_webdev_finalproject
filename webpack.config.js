@@ -1,9 +1,6 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
-  mode: 'development', // Switch to 'production' for deployment
-  entry: './src/script.js', // Main JavaScript entry
+  mode: 'development', // Use 'production' for a production-ready build
+  entry: './src/script.js', // Entry point
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -13,17 +10,17 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'], // Load and inject CSS into your bundle
+        use: ['style-loader', 'css-loader'], // Handles CSS files
       },
       {
-        test: /\.(png|jpg|gif|svg|ico)$/i, // Handle image files
+        test: /\.(png|jpg|gif|svg|ico)$/i, // Handles assets
         type: 'asset/resource',
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // Use your existing HTML template
+      template: './src/index.html', // Use your source HTML template
     }),
   ],
 };
