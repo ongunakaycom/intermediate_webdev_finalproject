@@ -2,16 +2,12 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/script.js', // Update this line
+  entry: './src/script.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html', // Template for generating index.html
-    }),
-  ],
+  mode: 'development', // Set mode to 'development' or 'production'
   module: {
     rules: [
       {
@@ -19,12 +15,20 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
     ],
   },
-  devServer: {
-    static: './dist',
-  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
 };
