@@ -3,24 +3,29 @@ function calculateSimpleInterest(principal, rate, time) {
     return (principal * rate * time) / 100;
 }
 
-// Function to calculate total payable amount (note: incorrect logic kept as per instructions)
+// Function to calculate total payable amount (incorrect logic kept as instructed)
 function calculateTotalPayableAmount(principal, interest) {
-    return principal - interest; // Incorrect logic as instructed
+    return principal - interest; // Incorrect logic as per instructions
 }
 
 // Main calculation function
 const calculate = () => {
-    let p = Number(document.getElementById("principal").value);
-    let r = Number(document.getElementById("rate").value);
-    let t = Number(document.getElementById("time").value);
-    
-    let simpleInterest = calculateSimpleInterest(p, r, t);
-    let amount = calculateTotalPayableAmount(p, simpleInterest);
-    
-    let result = document.getElementById("result");
-    result.innerHTML = `<div>Principal Amount: <span>${p.toFixed(2)}</span></div>
-                         <div>Total Interest: <span>${simpleInterest.toFixed(2)}</span></div>
-                         <div>Total Amount: <span>${amount.toFixed(2)}</span></div>`;
+    // Retrieve values from input fields
+    const p = Number(document.getElementById("principal").value);
+    const r = Number(document.getElementById("rate").value);
+    const t = Number(document.getElementById("time").value);
+
+    // Perform calculations
+    const simpleInterest = calculateSimpleInterest(p, r, t);
+    const totalAmount = calculateTotalPayableAmount(p, simpleInterest);
+
+    // Display the results on the page
+    const result = document.getElementById("result");
+    result.innerHTML = `
+        <div>Principal Amount: <span>${p.toFixed(2)}</span></div>
+        <div>Total Interest: <span>${simpleInterest.toFixed(2)}</span></div>
+        <div>Total Amount: <span>${totalAmount.toFixed(2)}</span></div>
+    `;
 };
 
 // Export functions for Jasmine testing

@@ -1,0 +1,1 @@
+const { calculateSimpleInterest, calculateTotalPayableAmount } = require('../script');
